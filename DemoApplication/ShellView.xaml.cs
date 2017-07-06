@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Prism.Logging;
 using Prism.Modularity;
 using System.ComponentModel.Composition;
+using Prism.Regions;
 
 namespace DemoApplication
 {
@@ -21,11 +22,44 @@ namespace DemoApplication
     /// Логика взаимодействия для ShellView.xaml
     /// </summary>
    [Export]
-    public partial class ShellView : Window
+    public partial class ShellView : Window, IPartImportsSatisfiedNotification
     {
+        private static Uri InboxViewUri = new Uri("/InboxView", UriKind.Relative);
+
         public ShellView()
         {
             InitializeComponent();
+        }
+
+        [Import(AllowRecomposition = false)]
+        public IModuleManager ModuleManager;
+
+        [Import(AllowRecomposition = false)]
+        public IRegionManager RegionManager;
+
+        public void OnImportsSatisfied()
+        {
+            this.ModuleManager.LoadModuleCompleted +=
+                (s, e) =>
+                {
+                    // todo: 01 - Navigation on when modules are loaded.
+                    // When using region navigation, be sure to use it consistently
+                    // to ensure you get proper journal behavior.  If we mixed
+                    // usage of adding views directly to regions, such as through
+                    // RegionManager.AddToRegion, and then use RegionManager.RequestNavigate,
+                    // we may not be able to navigate back correctly.
+                    // 
+                    // Here, we wait until the module we want to start with is
+                    // loaded and then navigate to the view we want to display
+                    // initially.
+                    //     
+                    if (e.ModuleInfo.ModuleName == "DemoModule")
+                    {
+                        this.RegionManager.RequestNavigate(
+                            "DemoRegion",
+                            InboxViewUri);
+                    }
+                };
         }
     }
 }

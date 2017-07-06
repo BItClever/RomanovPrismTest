@@ -18,13 +18,13 @@ namespace DemoApplication
 
         protected override DependencyObject CreateShell()
         {
-            return ServiceLocator.Current.GetInstance<ShellView>();
-            //return this.Container.GetExportedValue<ShellView>();
+            //return ServiceLocator.Current.GetInstance<ShellView>();
+            return this.Container.GetExportedValue<ShellView>();
         }
 
         protected override void InitializeShell()
         {
-            Application.Current.MainWindow = (ShellView) this.Shell;
+            //Application.Current.MainWindow = (ShellView) this.Shell;
             Application.Current.MainWindow.Show();
         }
 
