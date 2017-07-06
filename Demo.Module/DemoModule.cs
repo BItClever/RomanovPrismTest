@@ -19,7 +19,8 @@ namespace Demo.Module
 
         public void Initialize()
         {
-            this.RegionManager.RegisterViewWithRegion("DemoRegion", typeof(SimpleView));
+            Uri simpleViewNav = new Uri("SimpleView", UriKind.Relative);
+            RegionManager.RequestNavigate("DemoRegion", simpleViewNav);
         }
     }
 }

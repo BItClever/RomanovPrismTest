@@ -7,16 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:prism="http://www.codeplex.com/prism"
     Title="ShellView"
-    Width="300"
+    Width="531"
     Height="300"
     mc:Ignorable="d">
     <Grid>
         <ContentControl
-            Margin="110,119,0,0"
-            HorizontalAlignment="Left"
+            Height="249"
+            Margin="10,10,10,0"
             VerticalAlignment="Top"
-            prism:RegionManager.RegionName="DemoRegion"
-            Content="ContentControl" />
+            prism:RegionManager.RegionName="DemoRegion" />
 
     </Grid>
 </Window>

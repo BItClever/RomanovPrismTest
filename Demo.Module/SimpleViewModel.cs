@@ -10,34 +10,26 @@ using Prism.Mef.Modularity;
 
 namespace Demo.Module
 {
-    [ModuleExport(typeof(SimpleViewModel))]
+    [Export]
     public class SimpleViewModel : INavigationAware
     {
-        public string DemoString { get; set; }
-
         [Import]
-        public IRegionManager regionManager;
+        public IRegionManager RegionManager;
 
         void INavigationAware.OnNavigatedTo(NavigationContext navigationContext)
         {
-            // todo: 18 - Navigating an inner region based on context
-            // The ContactsView will navigate an inner region based on the
-            // value of the 'Show' query parameter.  If the value is 'Avatars'
-            // we will navigate to the avatar view otherwise we'll use the details view.
-
             NavigationParameters parameters = navigationContext.Parameters;
-
+           // RegionManager.RequestNavigate("DemoRegion", new Uri("SimpleView", UriKind.Relative));
         }
 
         bool INavigationAware.IsNavigationTarget(NavigationContext navigationContext)
         {
-            // This view will handle all navigation view requests for ContactsView, so we always return true.
             return true;
         }
 
         void INavigationAware.OnNavigatedFrom(NavigationContext navigationContext)
         {
-            // Intentionally not implemented
+
         }
     }
 }
