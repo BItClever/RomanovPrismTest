@@ -1,4 +1,6 @@
-﻿using Prism.Mef;
+﻿using Demo.Solutions;
+using Prism.Logging;
+using Prism.Mef;
 using Prism.Modularity;
 using System;
 using System.ComponentModel.Composition.Hosting;
@@ -8,6 +10,8 @@ namespace DemoApplication
 {
     public class DemoBootstrapper : MefBootstrapper
     {
+
+        private readonly DemoLogger _logger = new DemoLogger();
 
         protected override DependencyObject CreateShell()
         {
@@ -23,12 +27,14 @@ namespace DemoApplication
         {
             base.ConfigureAggregateCatalog();
             AggregateCatalog.Catalogs.Add(new AssemblyCatalog(typeof(DemoBootstrapper).Assembly));
-            AggregateCatalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory, "Demo.Module*.dll"));
+            AggregateCatalog.Catalogs.Add(new DirectoryCatalog(AppDomain.CurrentDomain.BaseDirectory, "Demo.*.dll"));
         }
 
         protected override IModuleCatalog CreateModuleCatalog()
         {
             return new ConfigurationModuleCatalog();
         }
+
+
     }
 }

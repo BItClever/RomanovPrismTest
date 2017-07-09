@@ -2,12 +2,9 @@
 using Prism.Modularity;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Prism.Logging;
+using Demo.Solutions;
 
 namespace Demo.Module
 {
@@ -17,8 +14,11 @@ namespace Demo.Module
         [Import]
         public IRegionManager RegionManager;
 
+        private readonly DemoLogger _logger = new DemoLogger();
+
         public void Initialize()
         {
+            _logger.Log("Demo.Module loaded", Category.Info, Priority.Medium);
             Uri simpleViewNav = new Uri("SimpleView", UriKind.Relative);
             RegionManager.RequestNavigate("DemoRegion", simpleViewNav);
         }
