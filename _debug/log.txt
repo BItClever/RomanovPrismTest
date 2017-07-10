@@ -1,2 +1,4 @@
 INFO 2017-07-09 07:32:20 – Demo.Module loaded
 INFO 2017-07-10 09:26:37 – Demo.Module loaded
+INFO 2017-07-10 11:27:41 – This is just to inform you
+INFO 2017-07-10 11:27:41 – Demo.Module loaded

@@ -4,28 +4,36 @@ using Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
 using Prism.Logging;
+using System.Collections.Generic;
 
 namespace Demo.Module
 {
     [ModuleExport(typeof(DemoModule))]
     public class DemoModule : IModule
     {
-        [Import]
-        public IRegionManager RegionManager;
-
-        ILoggerFacade _logger;
+        private readonly IEnumerable<ILoggerFacade> _loggers;
+        private readonly IRegionManager _regionManager;
 
         [ImportingConstructor]
-        public DemoModule(ILoggerFacade logger, IRegionManager regionManager)
+        public DemoModule([ImportMany] IEnumerable<ILoggerFacade> loggers, IRegionManager regionManager)
         {
-            _logger = logger;
+            _loggers = loggers;
+            _regionManager = regionManager;
         }
 
         public void Initialize()
         {
-            _logger.Log("Demo.Module loaded", Category.Info, Priority.Medium);
+            Log("Demo.Module loaded");
             Uri simpleViewNav = new Uri("SimpleView", UriKind.Relative);
-            RegionManager.RequestNavigate("DemoRegion", simpleViewNav);
+            _regionManager.RequestNavigate("DemoRegion", simpleViewNav);
+        }
+
+        private void Log(string message)
+        {
+            foreach (var logger in _loggers)
+            {
+                logger.Log(message, Category.Info, Priority.None);
+            }
         }
     }
 }

@@ -2,6 +2,9 @@
 using log4net;
 using System.ComponentModel.Composition;
 using log4net.Config;
+using Prism.Regions;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Demo.Solutions
 {
@@ -33,7 +36,8 @@ namespace Demo.Solutions
         public DemoLogger() : base()
         {
             XmlConfigurator.Configure();
-           // myDemoLogger.Info("This is just to inform you");
+          //  myDemoLogger.Info("This is just to inform you");
         }
+
     }
 }
