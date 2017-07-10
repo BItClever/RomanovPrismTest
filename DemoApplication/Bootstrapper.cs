@@ -1,6 +1,4 @@
-﻿using Demo.Solutions;
-using Prism.Logging;
-using Prism.Mef;
+﻿using Prism.Mef;
 using Prism.Modularity;
 using System;
 using System.ComponentModel.Composition.Hosting;
@@ -10,9 +8,6 @@ namespace DemoApplication
 {
     public class DemoBootstrapper : MefBootstrapper
     {
-
-        private readonly DemoLogger _logger = new DemoLogger();
-
         protected override DependencyObject CreateShell()
         {
             return this.Container.GetExportedValue<ShellView>();

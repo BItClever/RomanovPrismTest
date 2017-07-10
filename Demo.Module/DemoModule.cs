@@ -4,7 +4,6 @@ using Prism.Regions;
 using System;
 using System.ComponentModel.Composition;
 using Prism.Logging;
-using Demo.Solutions;
 
 namespace Demo.Module
 {
@@ -14,7 +13,13 @@ namespace Demo.Module
         [Import]
         public IRegionManager RegionManager;
 
-        private readonly DemoLogger _logger = new DemoLogger();
+        ILoggerFacade _logger;
+
+        [ImportingConstructor]
+        public DemoModule(ILoggerFacade logger, IRegionManager regionManager)
+        {
+            _logger = logger;
+        }
 
         public void Initialize()
         {
