@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="Demo.UserControls.SimpleUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Demo.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="uc"
+    Width="259.165"
+    Height="65.88"
+    mc:Ignorable="d">
+
+    <Grid Margin="5,0,0,0">
+        <TextBox
+            Width="75"
+            Height="20"
+            Margin="10,10,166,32"
+            Text="{Binding SimpleText, ElementName=uc}" />
+        <PasswordBox
+            Width="75"
+            Height="20"
+            Margin="10,42,166,0" />
+        <ComboBox
+            Width=" 50"
+            Height="15"
+            Margin="100,10,101,37"
+            ItemsSource="{Binding SimpleChoiceList, ElementName=uc}" />
+        <Button
+            Width=" 25"
+            Height="25"
+            Margin="108,37,118,0" />
+
+    </Grid>
+</UserControl>
