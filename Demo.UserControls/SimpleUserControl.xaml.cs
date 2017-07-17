@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Security;
+using System.Windows.Input;
 
 namespace Demo.UserControls
 {
@@ -33,18 +35,36 @@ namespace Demo.UserControls
             }
         }
 
+        public ICommand SimpleDoSomething
+        {
+            get
+            {
+                return (ICommand)GetValue(SimpleDoSomethingProperty);
+            }
+            set
+            {
+                SetValue(SimpleDoSomethingProperty, value);
+            }
+        }
+
         public static DependencyProperty SimpleTextProperty =
             DependencyProperty.Register("SimpleText", typeof(string), typeof(SimpleUserControl));
 
         public static DependencyProperty SimpleChoiceListProperty =
             DependencyProperty.Register("SimpleChoiceList", typeof(List<string>), typeof(SimpleUserControl));
 
+        public static DependencyProperty SimpleDoSomethingProperty =
+            DependencyProperty.Register("SimpleDoSomething", typeof(ICommand), typeof(SimpleUserControl));
         
+
         public SimpleUserControl()
         {
             InitializeComponent();
         }
 
-      
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

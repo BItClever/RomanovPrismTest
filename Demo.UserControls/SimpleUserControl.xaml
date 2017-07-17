@@ -15,7 +15,15 @@
             Width="75"
             Height="20"
             Margin="10,10,166,32"
-            Text="{Binding SimpleText, ElementName=uc}" />
+            Text="{Binding SimpleText, ElementName=uc}">
+            <TextBox.InputBindings>
+                <KeyBinding
+                    Key="Enter"
+                    Command="{Binding SimpleDoSomething, ElementName=uc}"
+                    Modifiers="" />
+            </TextBox.InputBindings>
+
+        </TextBox>
         <PasswordBox
             Width="75"
             Height="20"
@@ -28,7 +36,9 @@
         <Button
             Width=" 25"
             Height="25"
-            Margin="108,37,118,0" />
+            Margin="108,37,118,0"
+            Command="{Binding SimpleDoSomething, ElementName=uc}"
+            Content="Ok" />
 
     </Grid>
 </UserControl>

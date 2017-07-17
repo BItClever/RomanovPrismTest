@@ -12,7 +12,10 @@
     Background="Aqua"
     mc:Ignorable="d">
     <Grid>
-        <UserControls:SimpleUserControl SimpleChoiceList="{Binding SimpleChoiceList}" SimpleText="{Binding SimpleText, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+        <UserControls:SimpleUserControl
+            SimpleChoiceList="{Binding SimpleChoiceList}"
+            SimpleDoSomething="{Binding SimpleDoSomethingCommand}"
+            SimpleText="{Binding SimpleText}" />
 
 
     </Grid>
